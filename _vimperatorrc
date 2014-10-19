@@ -8,7 +8,7 @@ js << EOM
  * また、command.addUserCommandの中身については編集する必要はありません。
  */
 let subcommands = [
-  {
+	{
 		subcommand: "github",
 		description: "GitHub @ github.com",
 		target_uri: "https://github.com/search?utf8=%E2%9C%93&q="
@@ -41,17 +41,17 @@ commands.addUserCommand(
 		liberator.open(uri + keywords.join(" "), liberator.NEW_TAB);
 	}, {
 		completer: function(context, args) {
-            context.title = ["Sub-Command", "Description"];
-            context.compare = CompletionContext.Sort.number;
-            context.regenerate = false;
-            context.anchored = true;
-            context.ignoreCase = true;
-            context.filterFunc = null;
-            context.generate = function () {
-            	return subcommands.map(function(e) {
-            		return [e.subcommand, e.description]});
-            }
-        }
+        		context.title = ["Sub-Command", "Description"];
+            		context.compare = CompletionContext.Sort.number;
+            		context.regenerate = false;
+            		context.anchored = true;
+            		context.ignoreCase = true;
+            		context.filterFunc = null;
+            		context.generate = function () {
+            			return subcommands.map(function(e) {
+            				return [e.subcommand, e.description]});
+            		}
+        	}
 	}
 );
 EOM
