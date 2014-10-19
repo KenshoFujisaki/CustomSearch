@@ -2,7 +2,7 @@ CustomSearch
 ============
 
 ####これはなに？
-独自の検索を手軽に行うためのvimperator向けコードです。
+独自の検索を手軽に行うためのvimperator向けコードです。  
 "カスタマイズ"することにより、任意ページにおける検索をVimperator上から実行できます。
 ![Alt text](http://i.gyazo.com/8431f5201bf71c64304c983eae6b140e.png)
 
