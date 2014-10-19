@@ -3,6 +3,7 @@ CustomSearch
 
 ####これはなに？
 独自の検索を手軽に行うためのvimperator向けコードです。
+"カスタマイズ"することにより、任意ページにおける検索をVimperator上から実行できます。
 ![Alt text](http://i.gyazo.com/8431f5201bf71c64304c983eae6b140e.png)
 
 ####使い方
@@ -10,7 +11,7 @@ _vimperatorrcファイルの内容を、ご自身の_vimperatorrcファイルに
 
 ####カスタマイズ
 下にならって、_vimperatorrcにおける変数subcommandsのハッシュ配列に  
-検索対象の検索エンジンを追加することで、簡単に拡張できます。
+検索対象の検索URLを追加することで、簡単に検索対象を拡張できます。
 ```javascript
 /**
  * subcommandsにサブコマンド名(subcommand)、説明(description)、検索対象のURL(target_uri)を設定ください。
