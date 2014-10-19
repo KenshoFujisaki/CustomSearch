@@ -1,0 +1,58 @@
+"=======================================================
+" カスタム検索
+"=======================================================
+js << EOM
+/**
+ * subcommandsにサブコマンド名(subcommand)、説明(description)、検索対象のURL(target_uri)を設定ください。
+ * ただし、検索対象のURLについては、URLの最後に検索パラメータ（&q=や&s=）が来るようにしてください。
+ * また、command.addUserCommandの中身については編集する必要はありません。
+ */
+let subcommands = [
+  {
+		subcommand: "github",
+		description: "GitHub @ github.com",
+		target_uri: "https://github.com/search?utf8=%E2%9C%93&q="
+	}, {
+		subcommand: "openhub",
+		description: "open source code search @ code.openhub.net",
+		target_uri: "http://code.openhub.net/search?s="
+	}, {
+		subcommand: "scholar",
+		description: "google scholar search @ scholar.google.co.jp",
+		target_uri: "http://scholar.google.co.jp/scholar?q="
+	}
+];
+commands.addUserCommand(
+	["CustomSearch"],
+	"Custom Search:",
+	function(args) {
+		let uri = "";
+		let input_subcommand = args[0];
+		for(let i=0; i<subcommands.length; i++) {
+			if (input_subcommand == subcommands[i].subcommand) {
+				uri = subcommands[i].target_uri;	
+			}
+		}
+		if (uri == "") {
+			liberator.echoerr("input sub-command is not existing."); 
+			return;
+		}
+		keywords = args.slice(1);
+		liberator.open(uri + keywords.join(" "), liberator.NEW_TAB);
+	}, {
+		completer: function(context, args) {
+            context.title = ["Sub-Command", "Description"];
+            context.compare = CompletionContext.Sort.number;
+            context.regenerate = false;
+            context.anchored = true;
+            context.ignoreCase = true;
+            context.filterFunc = null;
+            context.generate = function () {
+            	return subcommands.map(function(e) {
+            		return [e.subcommand, e.description]});
+            }
+        }
+	}
+);
+EOM
+nnoremap S :CustomSearch<Space>
